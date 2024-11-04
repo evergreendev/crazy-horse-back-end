@@ -59,6 +59,10 @@ export default buildConfig({
         process.env.PAYLOAD_PUBLIC_NEXT_URL,
         process.env.PAYLOAD_PUBLIC_SERVER_URL
     ],
+    rateLimit: {
+        max: 2000,
+        trustProxy: true
+    },
     editor:
         lexicalEditor({
             features: ({defaultFeatures}) => {
