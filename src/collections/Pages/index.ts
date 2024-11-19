@@ -148,6 +148,20 @@ export const Pages: CollectionConfig = {
             ]
         },
         {
+            name: 'passwordProtect',
+            type: "checkbox",
+            admin: {
+                position: "sidebar"
+            }
+        },
+        {
+            name: "password",
+            type: "text",
+            admin: {
+                position: "sidebar"
+            }
+        },
+        {
             name: 'parent_page',
             label: "Parent Page",
             type: "relationship",

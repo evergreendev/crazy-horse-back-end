@@ -63,6 +63,11 @@ export interface User {
 export interface Media {
   id: number;
   alt?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -131,6 +136,8 @@ export interface Page {
         id?: string | null;
       }[]
     | null;
+  passwordProtect?: boolean | null;
+  password?: string | null;
   parent_page?: (number | null) | Page;
   excerpt?: string | null;
   full_path?: string | null;
@@ -232,6 +239,10 @@ export interface Page {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -292,6 +303,10 @@ export interface Page {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -342,6 +357,10 @@ export interface Page {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -447,6 +466,10 @@ export interface Page {
                               | {
                                   relationTo: 'news';
                                   value: number | News;
+                                }
+                              | {
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 };
                             id?: string | null;
                             blockName?: string | null;
@@ -533,6 +556,10 @@ export interface Page {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             id?: string | null;
@@ -578,6 +605,10 @@ export interface Page {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             id?: string | null;
@@ -660,6 +691,10 @@ export interface Page {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -755,6 +790,10 @@ export interface Page {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -811,6 +850,10 @@ export interface Page {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -894,6 +937,10 @@ export interface Page {
               | {
                   relationTo: 'news';
                   value: number | News;
+                }
+              | {
+                  relationTo: 'media';
+                  value: number | Media;
                 };
             id?: string | null;
             blockName?: string | null;
@@ -980,6 +1027,10 @@ export interface Page {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             id?: string | null;
@@ -1025,6 +1076,10 @@ export interface Page {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             id?: string | null;
@@ -1136,6 +1191,10 @@ export interface MuseumCollection {
           | ({
               relationTo: 'news';
               value: number | News;
+            } | null)
+          | ({
+              relationTo: 'media';
+              value: number | Media;
             } | null);
         internal_link?: string | null;
         id?: string | null;
@@ -1218,6 +1277,10 @@ export interface MuseumCollection {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -1278,6 +1341,10 @@ export interface MuseumCollection {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -1328,6 +1395,10 @@ export interface MuseumCollection {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -1421,6 +1492,10 @@ export interface MuseumCollection {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -1494,6 +1569,10 @@ export interface MuseumCollection {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -1550,6 +1629,10 @@ export interface MuseumCollection {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -1650,6 +1733,10 @@ export interface Impact {
           | ({
               relationTo: 'news';
               value: number | News;
+            } | null)
+          | ({
+              relationTo: 'media';
+              value: number | Media;
             } | null);
         internal_link?: string | null;
         id?: string | null;
@@ -1732,6 +1819,10 @@ export interface Impact {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -1792,6 +1883,10 @@ export interface Impact {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -1842,6 +1937,10 @@ export interface Impact {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -1935,6 +2034,10 @@ export interface Impact {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -2008,6 +2111,10 @@ export interface Impact {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -2064,6 +2171,10 @@ export interface Impact {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -2164,6 +2275,10 @@ export interface Passion {
           | ({
               relationTo: 'news';
               value: number | News;
+            } | null)
+          | ({
+              relationTo: 'media';
+              value: number | Media;
             } | null);
         internal_link?: string | null;
         id?: string | null;
@@ -2246,6 +2361,10 @@ export interface Passion {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -2306,6 +2425,10 @@ export interface Passion {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -2356,6 +2479,10 @@ export interface Passion {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -2449,6 +2576,10 @@ export interface Passion {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -2522,6 +2653,10 @@ export interface Passion {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -2578,6 +2713,10 @@ export interface Passion {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -2678,6 +2817,10 @@ export interface StudentSpotlight {
           | ({
               relationTo: 'news';
               value: number | News;
+            } | null)
+          | ({
+              relationTo: 'media';
+              value: number | Media;
             } | null);
         internal_link?: string | null;
         id?: string | null;
@@ -2760,6 +2903,10 @@ export interface StudentSpotlight {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -2820,6 +2967,10 @@ export interface StudentSpotlight {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -2870,6 +3021,10 @@ export interface StudentSpotlight {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -2963,6 +3118,10 @@ export interface StudentSpotlight {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -3036,6 +3195,10 @@ export interface StudentSpotlight {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -3092,6 +3255,10 @@ export interface StudentSpotlight {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -3192,6 +3359,10 @@ export interface Support {
           | ({
               relationTo: 'news';
               value: number | News;
+            } | null)
+          | ({
+              relationTo: 'media';
+              value: number | Media;
             } | null);
         internal_link?: string | null;
         id?: string | null;
@@ -3274,6 +3445,10 @@ export interface Support {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -3334,6 +3509,10 @@ export interface Support {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -3384,6 +3563,10 @@ export interface Support {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -3477,6 +3660,10 @@ export interface Support {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -3550,6 +3737,10 @@ export interface Support {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -3606,6 +3797,10 @@ export interface Support {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -3706,6 +3901,10 @@ export interface Event {
           | ({
               relationTo: 'news';
               value: number | News;
+            } | null)
+          | ({
+              relationTo: 'media';
+              value: number | Media;
             } | null);
         internal_link?: string | null;
         id?: string | null;
@@ -3787,6 +3986,10 @@ export interface Event {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -3847,6 +4050,10 @@ export interface Event {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -3897,6 +4104,10 @@ export interface Event {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -3990,6 +4201,10 @@ export interface Event {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -4063,6 +4278,10 @@ export interface Event {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -4119,6 +4338,10 @@ export interface Event {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -4257,6 +4480,10 @@ export interface EventCat {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -4317,6 +4544,10 @@ export interface EventCat {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -4367,6 +4598,10 @@ export interface EventCat {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -4460,6 +4695,10 @@ export interface EventCat {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -4533,6 +4772,10 @@ export interface EventCat {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -4589,6 +4832,10 @@ export interface EventCat {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -4689,6 +4936,10 @@ export interface News {
           | ({
               relationTo: 'news';
               value: number | News;
+            } | null)
+          | ({
+              relationTo: 'media';
+              value: number | Media;
             } | null);
         internal_link?: string | null;
         id?: string | null;
@@ -4771,6 +5022,10 @@ export interface News {
                                 | ({
                                     relationTo: 'news';
                                     value: number | News;
+                                  } | null)
+                                | ({
+                                    relationTo: 'media';
+                                    value: number | Media;
                                   } | null);
                               external_url?: string | null;
                               label?: string | null;
@@ -4831,6 +5086,10 @@ export interface News {
                                       | ({
                                           relationTo: 'news';
                                           value: number | News;
+                                        } | null)
+                                      | ({
+                                          relationTo: 'media';
+                                          value: number | Media;
                                         } | null);
                                     external_url?: string | null;
                                     label?: string | null;
@@ -4881,6 +5140,10 @@ export interface News {
                               | ({
                                   relationTo: 'news';
                                   value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
                                 } | null);
                             external_url?: string | null;
                             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -4974,6 +5237,10 @@ export interface News {
                     | ({
                         relationTo: 'news';
                         value: number | News;
+                      } | null)
+                    | ({
+                        relationTo: 'media';
+                        value: number | Media;
                       } | null);
                   external_url?: string | null;
                   id?: string | null;
@@ -5047,6 +5314,10 @@ export interface News {
                   | ({
                       relationTo: 'news';
                       value: number | News;
+                    } | null)
+                  | ({
+                      relationTo: 'media';
+                      value: number | Media;
                     } | null);
                 external_url?: string | null;
               };
@@ -5103,6 +5374,10 @@ export interface News {
               | ({
                   relationTo: 'news';
                   value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
                 } | null);
             external_url?: string | null;
             buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -5446,6 +5721,10 @@ export interface Redirect {
       | ({
           relationTo: 'news';
           value: number | News;
+        } | null)
+      | ({
+          relationTo: 'media';
+          value: number | Media;
         } | null);
     url?: string | null;
   };
@@ -5496,6 +5775,10 @@ export interface Search {
     | {
         relationTo: 'news';
         value: number | News;
+      }
+    | {
+        relationTo: 'media';
+        value: number | Media;
       };
   updatedAt: string;
   createdAt: string;
@@ -5579,6 +5862,10 @@ export interface Navigation {
       | ({
           relationTo: 'news';
           value: number | News;
+        } | null)
+      | ({
+          relationTo: 'media';
+          value: number | Media;
         } | null);
     external_url?: string | null;
     columns?:
@@ -5624,6 +5911,10 @@ export interface Navigation {
                       | ({
                           relationTo: 'news';
                           value: number | News;
+                        } | null)
+                      | ({
+                          relationTo: 'media';
+                          value: number | Media;
                         } | null);
                     external_url?: string | null;
                     buttonStyle?: ('primary' | 'secondary' | 'tertiary' | 'highlight' | 'text') | null;
@@ -5673,6 +5964,10 @@ export interface Navigation {
                         | ({
                             relationTo: 'news';
                             value: number | News;
+                          } | null)
+                        | ({
+                            relationTo: 'media';
+                            value: number | Media;
                           } | null);
                       external_url?: string | null;
                     };
@@ -5716,6 +6011,10 @@ export interface Navigation {
                             | ({
                                 relationTo: 'news';
                                 value: number | News;
+                              } | null)
+                            | ({
+                                relationTo: 'media';
+                                value: number | Media;
                               } | null);
                           external_url?: string | null;
                           id?: string | null;
@@ -5764,6 +6063,10 @@ export interface Navigation {
                       | ({
                           relationTo: 'news';
                           value: number | News;
+                        } | null)
+                      | ({
+                          relationTo: 'media';
+                          value: number | Media;
                         } | null);
                     external_url?: string | null;
                     item?:
@@ -5807,6 +6110,10 @@ export interface Navigation {
                             | ({
                                 relationTo: 'news';
                                 value: number | News;
+                              } | null)
+                            | ({
+                                relationTo: 'media';
+                                value: number | Media;
                               } | null);
                           external_url?: string | null;
                           id?: string | null;
