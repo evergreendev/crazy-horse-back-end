@@ -11,6 +11,7 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    modal: Modal;
     userUploadedFormDocuments: UserUploadedFormDocument;
     employment: Employment;
     museumCollections: MuseumCollection;
@@ -5595,6 +5596,133 @@ export interface Form {
   showFieldTable?: boolean | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "modal".
+ */
+export interface Modal {
+  id: number;
+  headerImages?:
+    | {
+        image?: number | Media | null;
+        id?: string | null;
+      }[]
+    | null;
+  headerText?: string | null;
+  bodyText?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  primaryAction?: {
+    title?: string | null;
+    external?: boolean | null;
+    Relation?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'museumCollections';
+          value: number | MuseumCollection;
+        } | null)
+      | ({
+          relationTo: 'impact';
+          value: number | Impact;
+        } | null)
+      | ({
+          relationTo: 'passions';
+          value: number | Passion;
+        } | null)
+      | ({
+          relationTo: 'studentSpotlight';
+          value: number | StudentSpotlight;
+        } | null)
+      | ({
+          relationTo: 'support';
+          value: number | Support;
+        } | null)
+      | ({
+          relationTo: 'event';
+          value: number | Event;
+        } | null)
+      | ({
+          relationTo: 'eventCat';
+          value: number | EventCat;
+        } | null)
+      | ({
+          relationTo: 'news';
+          value: number | News;
+        } | null)
+      | ({
+          relationTo: 'media';
+          value: number | Media;
+        } | null);
+    external_url?: string | null;
+  };
+  secondaryAction?: {
+    title?: string | null;
+    external?: boolean | null;
+    Relation?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'museumCollections';
+          value: number | MuseumCollection;
+        } | null)
+      | ({
+          relationTo: 'impact';
+          value: number | Impact;
+        } | null)
+      | ({
+          relationTo: 'passions';
+          value: number | Passion;
+        } | null)
+      | ({
+          relationTo: 'studentSpotlight';
+          value: number | StudentSpotlight;
+        } | null)
+      | ({
+          relationTo: 'support';
+          value: number | Support;
+        } | null)
+      | ({
+          relationTo: 'event';
+          value: number | Event;
+        } | null)
+      | ({
+          relationTo: 'eventCat';
+          value: number | EventCat;
+        } | null)
+      | ({
+          relationTo: 'news';
+          value: number | News;
+        } | null)
+      | ({
+          relationTo: 'media';
+          value: number | Media;
+        } | null);
+    external_url?: string | null;
+  };
+  startShowing?: string | null;
+  stopShowing?: string | null;
+  pages?: (number | Page)[] | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

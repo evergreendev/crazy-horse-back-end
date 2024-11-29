@@ -44,6 +44,7 @@ import sendEmail from './hooks/sendEmail';
 import { News } from './collections/News';
 import {Banner} from "./globals/Banner";
 import IFrame from "./blocks/IFrame";
+import { Modals } from './collections/Modals';
 
 // @ts-ignore
 export default buildConfig({
@@ -86,7 +87,7 @@ export default buildConfig({
     serverURL:
     process.env.PAYLOAD_PUBLIC_SERVER_URL,
     collections:
-        [Users, Media, Pages, UserUploadedFormDocuments, Employment, MuseumCollections, ContinuingToImpact, StudentSpotlight, PassionsForTheProject, Support, EventCollections, EventCategories,News],
+        [Users, Media, Pages, Modals, UserUploadedFormDocuments, Employment, MuseumCollections, ContinuingToImpact, StudentSpotlight, PassionsForTheProject, Support, EventCollections, EventCategories,News],
     globals:
         [Navigation, SiteOptions, Hours, Footer, Calendar, Admission, Banner],
     typescript:
