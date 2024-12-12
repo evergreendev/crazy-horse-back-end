@@ -3,6 +3,14 @@ import payload from 'payload'
 let nodemailer = require("nodemailer");
 let aws = require("@aws-sdk/client-ses");
 let { defaultProvider } = require("@aws-sdk/credential-provider-node");
+const mg = require('nodemailer-mailgun-transport');
+
+const auth = {
+  auth: {
+    api_key: process.env.AWS_SECRET_ACCESS_KEY,
+    domain: 'mail.crazyhorsememorial.org'
+  }
+}
 
 const ses = new aws.SES({
   apiVersion: "2010-12-01",
@@ -11,9 +19,9 @@ const ses = new aws.SES({
 })
 
 // create Nodemailer SES transporter
-let transporter = nodemailer.createTransport({
-  SES: { ses, aws },
-});
+let transporter = nodemailer.createTransport(
+  mg(auth)
+);
 
 require('dotenv').config()
 const app = express()
@@ -35,7 +43,7 @@ const start = async () => {
       ? {
         email: {
           fromName: "Crazy Horse Memorial",
-          fromAddress: "noreply@crazyhorsememorial.org",
+          fromAddress: "noreply@mail.crazyhorsememorial.org",
           transport: transporter
         },
       }
