@@ -3,7 +3,9 @@ import payload from 'payload'
 let nodemailer = require("nodemailer");
 let aws = require("@aws-sdk/client-ses");
 let { defaultProvider } = require("@aws-sdk/credential-provider-node");
-const mg = require('nodemailer-mailgun-transport');
+import mg from 'nodemailer-mailgun-transport';
+require('dotenv').config()
+const app = express()
 
 const auth = {
   auth: {
@@ -20,11 +22,8 @@ const ses = new aws.SES({
 
 // create Nodemailer SES transporter
 let transporter = nodemailer.createTransport(
-  mg(auth)
+    mg(auth)
 );
-
-require('dotenv').config()
-const app = express()
 
 // Redirect root to Admin panel
 app.get('/', (_, res) => {
