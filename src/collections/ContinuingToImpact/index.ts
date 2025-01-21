@@ -19,7 +19,7 @@ export const ContinuingToImpact: CollectionConfig = {
         useAsTitle: "title",
         hidden: ({user}) => user.role !== "admin",
         livePreview: {
-            url: ({data}) => `${process.env.PAYLOAD_PUBLIC_NEXT_URL}/museum-collection/${data.slug}?draft=true&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`,
+            url: ({data}) => `${process.env.PAYLOAD_PUBLIC_NEXT_URL}/impact/${data.slug}?draft=true&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`,
         },
     },
     hooks: {
