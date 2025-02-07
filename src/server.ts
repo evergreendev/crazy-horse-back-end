@@ -20,10 +20,19 @@ const ses = new aws.SES({
   defaultProvider,
 })
 
-// create Nodemailer SES transporter
+/*// create Nodemailer SES transporter
 let transporter = nodemailer.createTransport(
     mg(auth)
-);
+);*/
+
+const transporter = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST,
+  port: Number(process.env.EMAIL_PORT)||587,
+  auth: {
+    user: process.env.EMAIL_USERNAME,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
 
 // Redirect root to Admin panel
 app.get('/', (_, res) => {

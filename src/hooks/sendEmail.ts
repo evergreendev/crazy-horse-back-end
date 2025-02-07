@@ -28,7 +28,6 @@ const sendEmail = async (beforeChangeData: any): Promise<any> => {
 
             if (showFieldTable){
                 submissionData.forEach((field: any) => {
-                    console.log(form)
 
                     const formField = form.fields.find(x => {
                         return x.name === field.field
