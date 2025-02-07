@@ -53,8 +53,7 @@ export default buildConfig({
         bundler: webpackBundler(),
     },
     cors: [
-        process.env.PAYLOAD_PUBLIC_NEXT_URL,
-        process.env.PAYLOAD_PUBLIC_SERVER_URL
+        "*"
     ],
     csrf: [
         process.env.PAYLOAD_PUBLIC_NEXT_URL,
