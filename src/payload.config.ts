@@ -45,7 +45,7 @@ import { News } from './collections/News';
 import {Banner} from "./globals/Banner";
 import IFrame from "./blocks/IFrame";
 import { Modals } from './collections/Modals';
-
+console.log(process.env);
 // @ts-ignore
 export default buildConfig({
     admin: {
@@ -53,7 +53,8 @@ export default buildConfig({
         bundler: webpackBundler(),
     },
     cors: [
-        "*"
+        process.env.PAYLOAD_PUBLIC_NEXT_URL,
+        process.env.PAYLOAD_PUBLIC_SERVER_URL
     ],
     csrf: [
         process.env.PAYLOAD_PUBLIC_NEXT_URL,
