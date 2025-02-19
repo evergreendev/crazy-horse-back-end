@@ -45,7 +45,6 @@ import { News } from './collections/News';
 import {Banner} from "./globals/Banner";
 import IFrame from "./blocks/IFrame";
 import { Modals } from './collections/Modals';
-console.log(process.env);
 // @ts-ignore
 export default buildConfig({
     admin: {
