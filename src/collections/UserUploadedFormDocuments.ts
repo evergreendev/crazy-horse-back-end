@@ -42,7 +42,7 @@ export const UserUploadedFormDocuments: CollectionConfig = {
 
             return null;
         },
-        mimeTypes: ["image/*","video/mp4","application/pdf",".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
+        mimeTypes: ["image/*","video/mp4","application/pdf",".doc",".docx","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
     },
     fields: [
         {
