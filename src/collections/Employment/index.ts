@@ -1,16 +1,16 @@
 import {CollectionConfig} from "payload/types";
-import {isAdmin} from "../../access/isAdmin";
-import {isAdminOrPublished} from "../../access/isAdminOrPublished";
 import {populatePublishedAt} from "../../hooks/populatePublishedAt";
 import standardFields from "../../fields/standardFields";
 import {revalidateItem} from "../../hooks/revalidateItem";
 import {deleteItem} from "../../hooks/deleteItem";
+import {isRoleOrPublished} from "../../access/isRoleOrPublished";
+import {isAtLeastEmployeeManager} from "../../access/isAtLeastEmploymentManager";
 
 export const Employment: CollectionConfig = {
     slug: "employment",
     admin: {
         useAsTitle: "title",
-        hidden: ({user}) => user.role !== "admin",
+        hidden: ({user}) => (user.role === "admin" || user.role === "employment-manager"),
     },
     hooks: {
         beforeChange: [populatePublishedAt],
@@ -21,10 +21,10 @@ export const Employment: CollectionConfig = {
         drafts: true
     },
     access: {
-        read: isAdminOrPublished(),
-        update: isAdmin(),
-        create: isAdmin(),
-        delete: isAdmin()
+        read: isRoleOrPublished("employment-manager"),
+        update: isAtLeastEmployeeManager(),
+        create: isAtLeastEmployeeManager(),
+        delete: isAtLeastEmployeeManager()
     },
     fields: [
         {
