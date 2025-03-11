@@ -6,7 +6,7 @@ export const Media: CollectionConfig = {
         read: () => true
     },
     admin: {
-      hidden: ({user})=> user.role !== "admin"
+        hidden: ({user}) => !(user.role === "admin" || user.role === "museum-manager"),
     },
     upload: {
         staticURL: "/media",

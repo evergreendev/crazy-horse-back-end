@@ -1,11 +1,11 @@
 import {CollectionConfig} from "payload/types";
-import {isAdmin} from "../../access/isAdmin";
-import {isAdminOrPublished} from "../../access/isAdminOrPublished";
 import {populatePublishedAt} from "../../hooks/populatePublishedAt";
 import standardFields from "../../fields/standardFields";
 import {defaultBlocks} from "../../blocks/defaultBlocks";
 import {revalidateItem} from "../../hooks/revalidateItem";
 import {deleteItem} from "../../hooks/deleteItem";
+import {isRoleOrPublished} from "../../access/isRoleOrPublished";
+import {isAtLeastMuseumManager} from "../../access/isAtLeastMuseumManager";
 
 export const EventCategories: CollectionConfig = {
     slug: "eventCat",
@@ -29,10 +29,10 @@ export const EventCategories: CollectionConfig = {
         afterDelete: [deleteItem]
     },
     access: {
-        read: isAdminOrPublished(),
-        update: isAdmin(),
-        create: isAdmin(),
-        delete: isAdmin()
+        read: isRoleOrPublished("museum-manager"),
+        update: isAtLeastMuseumManager(),
+        create: isAtLeastMuseumManager(),
+        delete: isAtLeastMuseumManager()
     },
     fields: [
         {

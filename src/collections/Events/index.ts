@@ -1,6 +1,4 @@
 import {CollectionConfig} from "payload/types";
-import {isAdmin} from "../../access/isAdmin";
-import {isAdminOrPublished} from "../../access/isAdminOrPublished";
 import {populatePublishedAt} from "../../hooks/populatePublishedAt";
 import standardFields from "../../fields/standardFields";
 import {ArrayRowLabel} from "../../components/ArrayRowLabel";
@@ -8,12 +6,14 @@ import {defaultBlocks} from "../../blocks/defaultBlocks";
 import {collectionSlugs} from "../../blocks/fields/collectionSlugs";
 import {revalidateItem} from "../../hooks/revalidateItem";
 import {deleteItem} from "../../hooks/deleteItem";
+import {isRoleOrPublished} from "../../access/isRoleOrPublished";
+import {isAtLeastMuseumManager} from "../../access/isAtLeastMuseumManager";
 
 export const EventCollections: CollectionConfig = {
     slug: "event",
     admin: {
         useAsTitle: "title",
-        hidden: ({user}) => user.role !== "admin",
+        hidden: ({user}) => !(user.role === "admin" || user.role === "museum-manager"),
         livePreview: {
             url: ({data}) => `${process.env.PAYLOAD_PUBLIC_NEXT_URL}/event/${data.slug}?draft=true&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`,
         },
@@ -27,10 +27,10 @@ export const EventCollections: CollectionConfig = {
         drafts: true
     },
     access: {
-        read: isAdminOrPublished(),
-        update: isAdmin(),
-        create: isAdmin(),
-        delete: isAdmin()
+        read: isRoleOrPublished("museum-manager"),
+        update: isAtLeastMuseumManager(),
+        create: isAtLeastMuseumManager(),
+        delete: isAtLeastMuseumManager()
     },
     fields: [
         {

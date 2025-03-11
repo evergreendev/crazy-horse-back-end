@@ -1,21 +1,21 @@
 import {GlobalConfig} from "payload/types";
-import {isAdmin} from "../../access/isAdmin";
 import {ArrayRowLabel} from "../../components/ArrayRowLabel";
 import {fixDuplicationHook} from "../../hooks/fixDuplicationHook";
 import {useField} from "payload/components/forms";
 import {revalidateSiteOptions} from "../hooks/revalidateSiteOptions";
+import {isAtLeastMuseumManager} from "../../access/isAtLeastMuseumManager";
 
 export const Calendar: GlobalConfig = {
     slug: "calendar",
     admin: {
-        hidden: ({user}) => user.role !== "admin"
+        hidden: ({user}) => !(user.role === "admin" || user.role === "museum-manager"),
     },
     hooks:{
         afterChange: [revalidateSiteOptions]
     },
     access: {
         read: () => true,
-        update: isAdmin(),
+        update: isAtLeastMuseumManager(),
     },
     fields: [
         {

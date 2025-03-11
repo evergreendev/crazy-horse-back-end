@@ -41,10 +41,11 @@ import {Admission} from "./globals/Admission/Admission";
 import AdmissionBlock from "./blocks/AdmissionBlock";
 import redirects from "@payloadcms/plugin-redirects";
 import sendEmail from './hooks/sendEmail';
-import { News } from './collections/News';
+import {News} from './collections/News';
 import {Banner} from "./globals/Banner";
 import IFrame from "./blocks/IFrame";
-import { Modals } from './collections/Modals';
+import {Modals} from './collections/Modals';
+import {isAdmin} from "./access/isAdmin";
 // @ts-ignore
 export default buildConfig({
     admin: {
@@ -78,7 +79,7 @@ export default buildConfig({
                     }),
                     HTMLConverterFeature({}),
                     BlocksFeature({
-                        blocks: [HoursBlock,AdmissionBlock,IFrame]
+                        blocks: [HoursBlock, AdmissionBlock, IFrame]
                     })
                 ]
             }
@@ -86,7 +87,7 @@ export default buildConfig({
     serverURL:
     process.env.PAYLOAD_PUBLIC_SERVER_URL,
     collections:
-        [Users, Media, Pages, Modals, UserUploadedFormDocuments, Employment, MuseumCollections, ContinuingToImpact, StudentSpotlight, PassionsForTheProject, Support, EventCollections, EventCategories,News],
+        [Users, Media, Pages, Modals, UserUploadedFormDocuments, Employment, MuseumCollections, ContinuingToImpact, StudentSpotlight, PassionsForTheProject, Support, EventCollections, EventCategories, News],
     globals:
         [Navigation, SiteOptions, Hours, Footer, Calendar, Admission, Banner],
     typescript:
@@ -100,6 +101,14 @@ export default buildConfig({
     ,
     plugins: [
         redirects({
+            overrides: {
+                access:{
+                    read: isAdmin(),
+                    create: isAdmin(),
+                    update: isAdmin(),
+                    delete: isAdmin()
+                },
+            },
             collections: [...collectionSlugs]
         }),
         seoPlugin({
@@ -125,11 +134,17 @@ export default buildConfig({
                 FileUploadBlock
             },
             formOverrides: {
+                access: {
+                    read: isAdmin(),
+                    create: isAdmin(),
+                    update: isAdmin(),
+                    delete: isAdmin()
+                },
                 hooks: {
                     beforeChange: [fixDuplicationCollectionHook],
                     afterChange: [revalidateForm]
                 },
-                fields:[
+                fields: [
                     {
                         name: "showFieldTable",
                         type: "checkbox",
@@ -137,7 +152,13 @@ export default buildConfig({
                     }
                 ]
             },
-            formSubmissionOverrides:{
+            formSubmissionOverrides: {
+                access: {
+                    read: isAdmin(),
+                    create: isAdmin(),
+                    update: isAdmin(),
+                    delete: isAdmin()
+                },
                 hooks: {
                     beforeChange: [
                         (data) => sendEmail(data),
@@ -146,6 +167,14 @@ export default buildConfig({
             }
         }),
         search({
+            searchOverrides: {
+                access: {
+                    read: isAdmin(),
+                    create: isAdmin(),
+                    update: isAdmin(),
+                    delete: isAdmin()
+                },
+            },
             collections: collectionSlugs,
             defaultPriorities: {
                 pages: 10
