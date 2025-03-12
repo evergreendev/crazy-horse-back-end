@@ -46,6 +46,7 @@ import {Banner} from "./globals/Banner";
 import IFrame from "./blocks/IFrame";
 import {Modals} from './collections/Modals';
 import {isAdmin} from "./access/isAdmin";
+import {isAdminOrPublished} from "./access/isAdminOrPublished";
 // @ts-ignore
 export default buildConfig({
     admin: {
@@ -135,7 +136,7 @@ export default buildConfig({
             },
             formOverrides: {
                 access: {
-                    read: isAdmin(),
+                    read: () => true,
                     create: isAdmin(),
                     update: isAdmin(),
                     delete: isAdmin()
