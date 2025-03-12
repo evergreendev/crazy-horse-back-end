@@ -135,6 +135,9 @@ export default buildConfig({
                 FileUploadBlock
             },
             formOverrides: {
+                admin: {
+                    hidden: ({user}) => user.role !== "admin"
+                },
                 access: {
                     read: () => true,
                     create: isAdmin(),
