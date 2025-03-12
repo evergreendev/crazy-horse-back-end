@@ -10,7 +10,7 @@ export const Employment: CollectionConfig = {
     slug: "employment",
     admin: {
         useAsTitle: "title",
-        hidden: ({user}) => (user.role === "admin" || user.role === "employment-manager"),
+
     },
     hooks: {
         beforeChange: [populatePublishedAt],
@@ -32,18 +32,10 @@ export const Employment: CollectionConfig = {
             type: "textarea",
         },
         {
-            name: "linksToOnlineEmploymentForm",
-            label: "Link to online employment form (Uncheck to link position to PDF)",
-            type: "checkbox",
-            defaultValue: true
-        },
-        {
             name: "PDF",
+            label: "Job Description PDF (optional)",
             type: "upload",
             relationTo: "media",
-            admin: {
-                condition: (data, siblingData, { user, }) => data.linksToOnlineEmploymentForm === false
-            }
         },
         {
             name: "company",
