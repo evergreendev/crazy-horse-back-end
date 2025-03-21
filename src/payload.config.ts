@@ -159,7 +159,7 @@ export default buildConfig({
             formSubmissionOverrides: {
                 access: {
                     read: isAdmin(),
-                    create: isAdmin(),
+                    create: () => true,
                     update: isAdmin(),
                     delete: isAdmin()
                 },
