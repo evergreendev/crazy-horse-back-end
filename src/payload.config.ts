@@ -173,7 +173,7 @@ export default buildConfig({
         search({
             searchOverrides: {
                 access: {
-                    read: isAdmin(),
+                    read: () => true,
                     create: isAdmin(),
                     update: isAdmin(),
                     delete: isAdmin()
