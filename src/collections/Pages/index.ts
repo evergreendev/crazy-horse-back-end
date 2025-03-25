@@ -28,6 +28,7 @@ import AdmissionBlock from "../../blocks/AdmissionBlock";
 import CollectionList from "../../blocks/CollectionList";
 import WebcamBlock from "../../blocks/WebcamBlock";
 import IFrame from "../../blocks/IFrame";
+import BookNowButton from "../../blocks/BookNowButton";
 
 export const Pages: CollectionConfig = {
     slug: "pages",
@@ -267,6 +268,7 @@ export const Pages: CollectionConfig = {
                 AdmissionBlock,
                 CollectionList,
                 WebcamBlock,
+                BookNowButton,
                 IFrame
             ]),
                 ImageCard,
@@ -286,6 +288,7 @@ export const Pages: CollectionConfig = {
                 AdmissionBlock,
                 CollectionList,
                 WebcamBlock,
+                BookNowButton,
                 IFrame
             ]
         },
