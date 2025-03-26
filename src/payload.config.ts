@@ -13,7 +13,7 @@ import search from '@payloadcms/plugin-search'
 import formBuilder from '@payloadcms/plugin-form-builder'
 import seoPlugin from '@payloadcms/plugin-seo'
 
-import Users from './collections/Users'
+import Users, {userRoles} from './collections/Users'
 import {Navigation} from "./globals/Navigation/Navigation";
 import {SiteOptions} from "./globals/SiteOptions";
 import {Media} from "./collections/Media";
@@ -45,8 +45,8 @@ import {News} from './collections/News';
 import {Banner} from "./globals/Banner";
 import IFrame from "./blocks/IFrame";
 import {Modals} from './collections/Modals';
-import {isAdmin} from "./access/isAdmin";
-import {isAdminOrPublished} from "./access/isAdminOrPublished";
+import {isAdmin, isAdminFieldLevel} from "./access/isAdmin";
+import {isAdminOrAllowedRole} from "./access/IsAdminOrAllowedRole";
 // @ts-ignore
 export default buildConfig({
     admin: {
@@ -135,13 +135,10 @@ export default buildConfig({
                 FileUploadBlock
             },
             formOverrides: {
-                admin: {
-                    hidden: ({user}) => user.role !== "admin"
-                },
                 access: {
                     read: () => true,
                     create: isAdmin(),
-                    update: isAdmin(),
+                    update: isAdminOrAllowedRole(),
                     delete: isAdmin()
                 },
                 hooks: {
@@ -153,7 +150,18 @@ export default buildConfig({
                         name: "showFieldTable",
                         type: "checkbox",
                         defaultValue: true
-                    }
+                    },
+                    {
+                        name: "allowedRoles",
+                        type: "select",
+                        options: userRoles,
+                        hasMany: true,
+                        defaultValue: "admin",
+                        access: {
+                            read: isAdminFieldLevel,
+                            update: isAdminFieldLevel
+                        },
+                    },
                 ]
             },
             formSubmissionOverrides: {

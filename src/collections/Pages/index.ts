@@ -1,6 +1,5 @@
 import {CollectionConfig} from "payload/types";
-import {isAdmin} from "../../access/isAdmin";
-import {isAdminOrPublished} from "../../access/isAdminOrPublished";
+import {isAdminFieldLevel} from "../../access/isAdmin";
 import {populatePublishedAt} from "../../hooks/populatePublishedAt";
 import standardFields from "../../fields/standardFields";
 import {ArrayRowLabel} from "../../components/ArrayRowLabel";
@@ -29,12 +28,14 @@ import CollectionList from "../../blocks/CollectionList";
 import WebcamBlock from "../../blocks/WebcamBlock";
 import IFrame from "../../blocks/IFrame";
 import BookNowButton from "../../blocks/BookNowButton";
+import {userRoles} from "../Users";
+import {isAdminOrAllowedRole} from "../../access/IsAdminOrAllowedRole";
+import {isAdminOrAllowedRoleOrPublished} from "../../access/isAdminOrAllowedRoleOrPublished";
 
 export const Pages: CollectionConfig = {
     slug: "pages",
     admin: {
         useAsTitle: "title",
-        hidden: ({user}) => user.role !== "admin",
         livePreview: {
             url: ({data}) => `${process.env.PAYLOAD_PUBLIC_NEXT_URL}${data.slug !== 'home' ? `/${data.slug}` : ""}?draft=true&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`,
         },
@@ -48,10 +49,10 @@ export const Pages: CollectionConfig = {
         drafts: true
     },
     access: {
-        read: isAdminOrPublished(),
-        update: isAdmin(),
-        create: isAdmin(),
-        delete: isAdmin()
+        read: isAdminOrAllowedRoleOrPublished(),
+        update: isAdminOrAllowedRole(),
+        create: isAdminOrAllowedRole(),
+        delete: isAdminOrAllowedRole()
     },
     fields: [
         {
@@ -240,6 +241,20 @@ export const Pages: CollectionConfig = {
                         return final.reverse().join("/");
                     }
                 ]
+            }
+        },
+        {
+            name: "allowedRoles",
+            type: "select",
+            options: userRoles,
+            hasMany: true,
+            defaultValue: "admin",
+            access: {
+                read: isAdminFieldLevel,
+                update: isAdminFieldLevel
+            },
+            admin: {
+                position: "sidebar"
             }
         },
         {
