@@ -104,7 +104,7 @@ export default buildConfig({
         redirects({
             overrides: {
                 access:{
-                    read: isAdmin(),
+                    read: ()=> true,
                     create: isAdmin(),
                     update: isAdmin(),
                     delete: isAdmin()
