@@ -103,8 +103,8 @@ export default buildConfig({
     plugins: [
         redirects({
             overrides: {
-                access:{
-                    read: ()=> true,
+                access: {
+                    read: () => true,
                     create: isAdmin(),
                     update: isAdmin(),
                     delete: isAdmin()
@@ -180,6 +180,12 @@ export default buildConfig({
         }),
         search({
             searchOverrides: {
+                fields: [
+                    {
+                        name: "searchKeywords",
+                        type: "text",
+                    }
+                ],
                 access: {
                     read: () => true,
                     create: isAdmin(),
@@ -195,7 +201,12 @@ export default buildConfig({
 
                 revalidate({payload, collection: 'search', slug: ""})
 
-                return searchDoc;
+                console.log(originalDoc.layout);
+
+                return {
+                    ...searchDoc,
+                    searchKeywords: originalDoc.excerpt,
+                };
             }
         })
     ],

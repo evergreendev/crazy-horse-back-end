@@ -142,6 +142,7 @@ export interface Page {
   parent_page?: (number | null) | Page;
   excerpt?: string | null;
   full_path?: string | null;
+  allowedRoles?: ('admin' | 'museum-manager' | 'employment-manager')[] | null;
   layout?:
     | (
         | {
@@ -637,6 +638,11 @@ export interface Page {
                             blockType: 'WebcamBlock';
                           }
                         | {
+                            id?: string | null;
+                            blockName?: string | null;
+                            blockType: 'BookNowButton';
+                          }
+                        | {
                             containerStyle?: string | null;
                             fields?:
                               | {
@@ -1106,6 +1112,11 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'WebcamBlock';
+          }
+        | {
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'BookNowButton';
           }
         | {
             containerStyle?: string | null;
@@ -4377,6 +4388,7 @@ export interface Event {
   slug?: string | null;
   publishedAt?: string | null;
   eventCategory?: (number | null) | EventCat;
+  order?: number | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -5594,6 +5606,7 @@ export interface Form {
       }[]
     | null;
   showFieldTable?: boolean | null;
+  allowedRoles?: ('admin' | 'museum-manager' | 'employment-manager')[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -5792,7 +5805,6 @@ export interface FormSubmission {
 export interface Employment {
   id: number;
   description?: string | null;
-  linksToOnlineEmploymentForm?: boolean | null;
   PDF?: number | Media | null;
   company: 'crazy-horse' | 'korczak';
   positionType: 'year-round' | 'seasonal';
@@ -5908,6 +5920,7 @@ export interface Search {
         relationTo: 'media';
         value: number | Media;
       };
+  searchKeywords?: string | null;
   updatedAt: string;
   createdAt: string;
 }
