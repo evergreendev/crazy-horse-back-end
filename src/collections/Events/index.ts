@@ -209,6 +209,13 @@ export const EventCollections: CollectionConfig = {
             },
         },
         {
+            name: "searchKeywords",
+            type: "textarea",
+            admin: {
+                position: "sidebar"
+            }
+        },
+        {
             name: "order",
             type: "number",
             admin: {

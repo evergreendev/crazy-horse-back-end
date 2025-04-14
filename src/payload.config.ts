@@ -201,11 +201,15 @@ export default buildConfig({
 
                 revalidate({payload, collection: 'search', slug: ""})
 
-                console.log(originalDoc.layout);
+                let keywords = originalDoc.excerpt;
+
+                if ("searchKeywords" in originalDoc) {
+                    keywords += " " + originalDoc.searchKeywords
+                }
 
                 return {
                     ...searchDoc,
-                    searchKeywords: originalDoc.excerpt,
+                    searchKeywords: keywords,
                 };
             }
         })

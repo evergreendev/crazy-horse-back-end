@@ -141,6 +141,7 @@ export interface Page {
   password?: string | null;
   parent_page?: (number | null) | Page;
   excerpt?: string | null;
+  searchKeywords?: string | null;
   full_path?: string | null;
   allowedRoles?: ('admin' | 'museum-manager' | 'employment-manager')[] | null;
   layout?:
@@ -4388,6 +4389,7 @@ export interface Event {
   slug?: string | null;
   publishedAt?: string | null;
   eventCategory?: (number | null) | EventCat;
+  searchKeywords?: string | null;
   order?: number | null;
   meta?: {
     title?: string | null;
