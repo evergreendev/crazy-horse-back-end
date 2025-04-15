@@ -46,7 +46,8 @@ import {Banner} from "./globals/Banner";
 import IFrame from "./blocks/IFrame";
 import {Modals} from './collections/Modals';
 import {isAdmin, isAdminFieldLevel} from "./access/isAdmin";
-import {isAdminOrAllowedRole} from "./access/IsAdminOrAllowedRole";
+import {isAdminOrAllowedRoleForm} from "./access/isAdminOrAllowedRoleForm";
+import {isAdminOrAllowedRoleFormOrIsPublic} from "./access/isAdminOrAllowedRoleFormOrIsPublic";
 // @ts-ignore
 export default buildConfig({
     admin: {
@@ -136,9 +137,9 @@ export default buildConfig({
             },
             formOverrides: {
                 access: {
-                    read: () => true,
+                    read: isAdminOrAllowedRoleFormOrIsPublic(),
                     create: isAdmin(),
-                    update: isAdminOrAllowedRole(),
+                    update: isAdminOrAllowedRoleForm(),
                     delete: isAdmin()
                 },
                 hooks: {
@@ -166,10 +167,10 @@ export default buildConfig({
             },
             formSubmissionOverrides: {
                 access: {
-                    read: isAdmin(),
+                    read: isAdminOrAllowedRoleForm(),
                     create: () => true,
                     update: isAdmin(),
-                    delete: isAdmin()
+                    delete: isAdminOrAllowedRoleForm()
                 },
                 hooks: {
                     beforeChange: [

@@ -39,6 +39,15 @@ const Users: CollectionConfig = {
                 update: isAdminFieldLevel
             },
         },
+        {
+            name: "allowedFormSubmissions",
+            type: "relationship",
+            relationTo: "forms",
+            hasMany: true,
+            access: {
+                update: isAdminFieldLevel
+            },
+        }
     ],
 }
 

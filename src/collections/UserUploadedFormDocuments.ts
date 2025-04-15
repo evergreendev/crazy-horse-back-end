@@ -1,15 +1,17 @@
 import { CollectionConfig } from "payload/types";
 import {isAdmin} from "../access/isAdmin";
+import {isAdminOrAllowedRoleForm} from "../access/isAdminOrAllowedRoleForm";
 
 export const UserUploadedFormDocuments: CollectionConfig = {
     slug: "userUploadedFormDocuments",
     access: {
-        read: isAdmin(),
-        create: () => true
+        read: isAdminOrAllowedRoleForm(),
+        create: () => true,
+        update: isAdmin()
     },
-    admin: {
+/*    admin: {
         hidden: ({user})=> user.role !== "admin"
-    },
+    },*/
     upload: {
         staticURL: "/user-uploaded-documents",
         staticDir: "user-uploaded-documents",
