@@ -85,27 +85,17 @@ export const Hours: GlobalConfig = {
                                     {
                                         name: "hour_start",
                                         label: "Start",
-                                        type: "date",
+                                        type: "text",
                                         admin: {
                                             width: '50%',
-                                            date: {
-                                                timeIntervals: 10,
-                                                pickerAppearance: 'timeOnly',
-                                                displayFormat: 'h:mm a',
-                                            },
                                         },
                                     },
                                     {
                                         name: "hour_end",
                                         label: "End",
-                                        type: "date",
+                                        type: "text",
                                         admin: {
                                             width: '50%',
-                                            date: {
-                                                timeIntervals: 10,
-                                                pickerAppearance: 'timeOnly',
-                                                displayFormat: 'h:mm a',
-                                            },
                                         },
                                     },
                                 ]
