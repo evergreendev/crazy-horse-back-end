@@ -112,32 +112,22 @@ export const Calendar: GlobalConfig = {
                                     fields: [{
                                         name: "hour_start",
                                         label: "Start Time",
-                                        type: "date",
+                                        type: "text",
                                         admin: {
                                             width: '50%',
                                             condition: (siblingData) => {
                                                 return !siblingData?.monthLongEvent;
-                                            },
-                                            date: {
-                                                timeIntervals: 5,
-                                                pickerAppearance: 'timeOnly',
-                                                displayFormat: 'h:mm a',
                                             },
                                         },
                                     },
                                         {
                                             name: "hour_end",
                                             label: "End Time",
-                                            type: "date",
+                                            type: "text",
                                             admin: {
                                                 width: '50%',
                                                 condition: (siblingData) => {
                                                     return !siblingData?.monthLongEvent;
-                                                },
-                                                date: {
-                                                    timeIntervals: 5,
-                                                    pickerAppearance: 'timeOnly',
-                                                    displayFormat: 'h:mm a',
                                                 },
                                             },
                                         },
