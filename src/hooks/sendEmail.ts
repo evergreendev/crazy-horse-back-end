@@ -9,11 +9,13 @@ const sendEmail = async (beforeChangeData: any): Promise<any> => {
 
     if (operation === 'create') {
         const {
-            data: {id: formSubmissionID},
             req: {locale, payload},
         } = beforeChangeData
 
         const {form: formID, submissionData} = data || {}
+
+        // Log the data ID directly - this is the correct way to access the ID
+        const dataID = data.id || 'ID not available'
 
         try {
             const form = await payload.findByID({
@@ -35,7 +37,7 @@ const sendEmail = async (beforeChangeData: any): Promise<any> => {
 
                     const label = formField?.label || field.field
 
-                        fieldTable += "<div>";
+                    fieldTable += "<div>";
                     fieldTable += `<span style='font-weight: bold'>${label}:</span>`;
                     fieldTable += ` <span>${field.value}</span>`;
                     fieldTable += "</div>";
@@ -113,7 +115,7 @@ const sendEmail = async (beforeChangeData: any): Promise<any> => {
                 payload.logger.info({msg: 'No emails to send.'})
             }
         } catch (err: unknown) {
-            const msg = `Error while sending one or more emails in form submission id: ${formSubmissionID}.`
+            const msg = `Error while sending one or more emails in form submission with data ID: ${dataID}.`
             payload.logger.error({err: msg})
         }
     }

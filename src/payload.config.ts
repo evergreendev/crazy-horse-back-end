@@ -48,6 +48,7 @@ import {Modals} from './collections/Modals';
 import {isAdmin, isAdminFieldLevel} from "./access/isAdmin";
 import {isAdminOrAllowedRoleForm} from "./access/isAdminOrAllowedRoleForm";
 import {isAdminOrAllowedRoleFormOrIsPublic} from "./access/isAdminOrAllowedRoleFormOrIsPublic";
+import associateFileWithSub from "./hooks/associateFileWithSub";
 // @ts-ignore
 export default buildConfig({
     admin: {
@@ -175,6 +176,9 @@ export default buildConfig({
                 hooks: {
                     beforeChange: [
                         (data) => sendEmail(data),
+                    ],
+                    afterChange: [
+                        associateFileWithSub
                     ]
                 }
             }
