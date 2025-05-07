@@ -49,6 +49,9 @@ import {isAdmin, isAdminFieldLevel} from "./access/isAdmin";
 import {isAdminOrAllowedRoleForm} from "./access/isAdminOrAllowedRoleForm";
 import {isAdminOrAllowedRoleFormOrIsPublic} from "./access/isAdminOrAllowedRoleFormOrIsPublic";
 import associateFileWithSub from "./hooks/associateFileWithSub";
+import { resendFormEmailEndpoint } from './endpoints/resendFormEmail';
+import React from 'react';
+import ResendEmailButton from './components/ResendEmailButton';
 // @ts-ignore
 export default buildConfig({
     admin: {
@@ -180,7 +183,22 @@ export default buildConfig({
                     afterChange: [
                         associateFileWithSub
                     ]
-                }
+                },
+                fields: [
+                    {
+                        name: 'resendEmailAction',
+                        type: 'ui',
+                        admin: {
+                            position: 'sidebar',
+                            components: {
+                                Field: ({ field, value }) => {
+                                    // In a UI field, we can access the document via props
+                                    return <ResendEmailButton collection={{ slug: 'form-submissions' }} />;
+                                }
+                            },
+                        },
+                    }
+                ]
             }
         }),
         search({
@@ -225,4 +243,7 @@ export default buildConfig({
                 connectionString: process.env.DATABASE_URI,
             },
         }),
+    endpoints: [
+        resendFormEmailEndpoint,
+    ],
 })
