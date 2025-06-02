@@ -42,6 +42,7 @@ import AdmissionBlock from "./blocks/AdmissionBlock";
 import redirects from "@payloadcms/plugin-redirects";
 import sendEmail from './hooks/sendEmail';
 import {News} from './collections/News';
+import {PressRelease} from './collections/PressRelease';
 import {Banner} from "./globals/Banner";
 import IFrame from "./blocks/IFrame";
 import {Modals} from './collections/Modals';
@@ -93,7 +94,7 @@ export default buildConfig({
     serverURL:
     process.env.PAYLOAD_PUBLIC_SERVER_URL,
     collections:
-        [Users, Media, Pages, Modals, UserUploadedFormDocuments, Employment, MuseumCollections, ContinuingToImpact, StudentSpotlight, PassionsForTheProject, Support, EventCollections, EventCategories, News],
+        [Users, Media, Pages, Modals, UserUploadedFormDocuments, Employment, MuseumCollections, ContinuingToImpact, StudentSpotlight, PassionsForTheProject, Support, EventCollections, EventCategories, News, PressRelease],
     globals:
         [Navigation, SiteOptions, Hours, Footer, Calendar, Admission, Banner],
     typescript:

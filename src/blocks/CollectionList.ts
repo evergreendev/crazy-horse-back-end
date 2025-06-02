@@ -16,6 +16,11 @@ const CollectionCardBlock:Block = {
             type: "select",
             required: true,
             options: collectionSlugsOptions
+        },
+        {
+            name: "isMinimal",
+            label: "Minimal Style",
+            type: "checkbox"
         }
     ]
 }

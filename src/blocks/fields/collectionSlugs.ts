@@ -8,7 +8,8 @@ export const collectionSlugs = [
     "event",
     "eventCat",
     "news",
-    "media"
+    "media",
+    "pressRelease"
 ]
 
 export const collectionSlugsOptions = [
@@ -39,5 +40,9 @@ export const collectionSlugsOptions = [
     {
         label: "News",
         value: "news"
+    },
+    {
+        label: "Press Releases",
+        value: "pressRelease"
     }
 ]
