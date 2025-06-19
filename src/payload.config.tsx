@@ -53,6 +53,7 @@ import associateFileWithSub from "./hooks/associateFileWithSub";
 import { resendFormEmailEndpoint } from './endpoints/resendFormEmail';
 import React from 'react';
 import ResendEmailButton from './components/ResendEmailButton';
+import MediaBlock from "./blocks/MediaBlock";
 // @ts-ignore
 export default buildConfig({
     admin: {
@@ -86,7 +87,7 @@ export default buildConfig({
                     }),
                     HTMLConverterFeature({}),
                     BlocksFeature({
-                        blocks: [HoursBlock, AdmissionBlock, IFrame]
+                        blocks: [HoursBlock, AdmissionBlock, IFrame, MediaBlock]
                     })
                 ]
             }
