@@ -375,6 +375,55 @@ export interface Page {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -1029,6 +1078,55 @@ export interface Page {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -1481,6 +1579,55 @@ export interface MuseumCollection {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -1856,6 +2003,55 @@ export interface MuseumCollection {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -2051,6 +2247,55 @@ export interface Impact {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -2426,6 +2671,55 @@ export interface Impact {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -2621,6 +2915,55 @@ export interface Passion {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -2996,6 +3339,55 @@ export interface Passion {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -3191,6 +3583,55 @@ export interface StudentSpotlight {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -3566,6 +4007,55 @@ export interface StudentSpotlight {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -3761,6 +4251,55 @@ export interface Support {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -4136,6 +4675,55 @@ export interface Support {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -4330,6 +4918,55 @@ export interface Event {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -4705,6 +5342,55 @@ export interface Event {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -4850,6 +5536,55 @@ export interface EventCat {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -5225,6 +5960,55 @@ export interface EventCat {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -5420,6 +6204,55 @@ export interface News {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -5795,6 +6628,55 @@ export interface News {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -5991,6 +6873,55 @@ export interface PressRelease {
                             url?: string | null;
                             thumbnail?: number | Media | null;
                             expandImage?: boolean | null;
+                            align?: ('left' | 'center' | 'right') | null;
+                            title?: string | null;
+                            external?: boolean | null;
+                            Relation?:
+                              | ({
+                                  relationTo: 'pages';
+                                  value: number | Page;
+                                } | null)
+                              | ({
+                                  relationTo: 'museumCollections';
+                                  value: number | MuseumCollection;
+                                } | null)
+                              | ({
+                                  relationTo: 'impact';
+                                  value: number | Impact;
+                                } | null)
+                              | ({
+                                  relationTo: 'passions';
+                                  value: number | Passion;
+                                } | null)
+                              | ({
+                                  relationTo: 'studentSpotlight';
+                                  value: number | StudentSpotlight;
+                                } | null)
+                              | ({
+                                  relationTo: 'support';
+                                  value: number | Support;
+                                } | null)
+                              | ({
+                                  relationTo: 'event';
+                                  value: number | Event;
+                                } | null)
+                              | ({
+                                  relationTo: 'eventCat';
+                                  value: number | EventCat;
+                                } | null)
+                              | ({
+                                  relationTo: 'news';
+                                  value: number | News;
+                                } | null)
+                              | ({
+                                  relationTo: 'media';
+                                  value: number | Media;
+                                } | null)
+                              | ({
+                                  relationTo: 'pressRelease';
+                                  value: number | PressRelease;
+                                } | null);
+                            external_url?: string | null;
                             id?: string | null;
                             blockName?: string | null;
                             blockType: 'MediaBlock';
@@ -6366,6 +7297,55 @@ export interface PressRelease {
             url?: string | null;
             thumbnail?: number | Media | null;
             expandImage?: boolean | null;
+            align?: ('left' | 'center' | 'right') | null;
+            title?: string | null;
+            external?: boolean | null;
+            Relation?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'museumCollections';
+                  value: number | MuseumCollection;
+                } | null)
+              | ({
+                  relationTo: 'impact';
+                  value: number | Impact;
+                } | null)
+              | ({
+                  relationTo: 'passions';
+                  value: number | Passion;
+                } | null)
+              | ({
+                  relationTo: 'studentSpotlight';
+                  value: number | StudentSpotlight;
+                } | null)
+              | ({
+                  relationTo: 'support';
+                  value: number | Support;
+                } | null)
+              | ({
+                  relationTo: 'event';
+                  value: number | Event;
+                } | null)
+              | ({
+                  relationTo: 'eventCat';
+                  value: number | EventCat;
+                } | null)
+              | ({
+                  relationTo: 'news';
+                  value: number | News;
+                } | null)
+              | ({
+                  relationTo: 'media';
+                  value: number | Media;
+                } | null)
+              | ({
+                  relationTo: 'pressRelease';
+                  value: number | PressRelease;
+                } | null);
+            external_url?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'MediaBlock';
@@ -7175,6 +8155,55 @@ export interface Navigation {
                     url?: string | null;
                     thumbnail?: number | Media | null;
                     expandImage?: boolean | null;
+                    align?: ('left' | 'center' | 'right') | null;
+                    title?: string | null;
+                    external?: boolean | null;
+                    Relation?:
+                      | ({
+                          relationTo: 'pages';
+                          value: number | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'museumCollections';
+                          value: number | MuseumCollection;
+                        } | null)
+                      | ({
+                          relationTo: 'impact';
+                          value: number | Impact;
+                        } | null)
+                      | ({
+                          relationTo: 'passions';
+                          value: number | Passion;
+                        } | null)
+                      | ({
+                          relationTo: 'studentSpotlight';
+                          value: number | StudentSpotlight;
+                        } | null)
+                      | ({
+                          relationTo: 'support';
+                          value: number | Support;
+                        } | null)
+                      | ({
+                          relationTo: 'event';
+                          value: number | Event;
+                        } | null)
+                      | ({
+                          relationTo: 'eventCat';
+                          value: number | EventCat;
+                        } | null)
+                      | ({
+                          relationTo: 'news';
+                          value: number | News;
+                        } | null)
+                      | ({
+                          relationTo: 'media';
+                          value: number | Media;
+                        } | null)
+                      | ({
+                          relationTo: 'pressRelease';
+                          value: number | PressRelease;
+                        } | null);
+                    external_url?: string | null;
                     id?: string | null;
                     blockName?: string | null;
                     blockType: 'MediaBlock';

@@ -1,4 +1,5 @@
 import {Block} from "payload/types";
+import navItemFields from "../fields/navItemFields";
 
 export const MediaBlock: Block = {
     slug: "MediaBlock",
@@ -30,7 +31,18 @@ export const MediaBlock: Block = {
             admin: {
                 description: "Forces image to expand to fill the size of the container"
             }
-        }
+        },
+        {
+            name: "align",
+            type: "select",
+            defaultValue: "center",
+            options: [
+                "left",
+                "center",
+                "right"
+            ]
+        },
+        ...navItemFields
     ]
 }
 
