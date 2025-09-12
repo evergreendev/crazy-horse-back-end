@@ -45,6 +45,8 @@ const upsertOption = async (payload: any, form: Form, fieldName: string, value: 
   if (exists) return
 
   options.push({ label: value, value })
+  // Ensure options are alphabetized by label (case-insensitive) after adding
+  options.sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: 'base' }))
   field.options = options
   fields[idx] = field
 
