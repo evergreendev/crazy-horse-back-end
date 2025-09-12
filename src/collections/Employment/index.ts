@@ -5,7 +5,7 @@ import {revalidateItem} from "../../hooks/revalidateItem";
 import {deleteItem} from "../../hooks/deleteItem";
 import {isRoleOrPublished} from "../../access/isRoleOrPublished";
 import {isAtLeastEmployeeManager} from "../../access/isAtLeastEmploymentManager";
-import {updateFormOptions} from "./hooks/updateFormOptions";
+import {updateFormOptions, removeFormOptionOnDelete} from "./hooks/updateFormOptions";
 
 export const Employment: CollectionConfig = {
     slug: "employment",
@@ -16,7 +16,7 @@ export const Employment: CollectionConfig = {
     hooks: {
         beforeChange: [populatePublishedAt],
         afterChange: [updateFormOptions, revalidateItem],
-        afterDelete: [deleteItem]
+        afterDelete: [removeFormOptionOnDelete, deleteItem]
     },
     versions: {
         drafts: true
