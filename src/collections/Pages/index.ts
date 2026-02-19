@@ -150,6 +150,21 @@ export const Pages: CollectionConfig = {
             ]
         },
         {
+            name: "donationLinkOverride",
+            type: "checkbox",
+            admin: {
+                position: "sidebar"
+            }
+        },
+        {
+            name: 'donationLinkOverrideUrl',
+            type: "text",
+            admin: {
+                description: "Changes the donation link in the header",
+                position: "sidebar"
+            }
+        },
+        {
             name: 'passwordProtect',
             type: "checkbox",
             admin: {
