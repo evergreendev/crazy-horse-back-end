@@ -96,6 +96,11 @@ export const Calendar: GlobalConfig = {
                                 {
                                     name: "date",
                                     type: "date",
+                                },
+                                {
+                                    name: "endDate",
+                                    label: "End Date(optional)",
+                                    type: "date",
                                 }
                             ],
 

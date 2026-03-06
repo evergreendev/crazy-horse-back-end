@@ -8310,6 +8310,7 @@ export interface Calendar {
         dates?:
           | {
               date?: string | null;
+              endDate?: string | null;
               id?: string | null;
             }[]
           | null;
