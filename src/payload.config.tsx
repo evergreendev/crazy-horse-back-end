@@ -51,8 +51,10 @@ import {isAdminOrAllowedRoleForm} from "./access/isAdminOrAllowedRoleForm";
 import {isAdminOrAllowedRoleFormOrIsPublic} from "./access/isAdminOrAllowedRoleFormOrIsPublic";
 import associateFileWithSub from "./hooks/associateFileWithSub";
 import { resendFormEmailEndpoint } from './endpoints/resendFormEmail';
+import { exportFormSubmissionsEndpoint } from './endpoints/exportFormSubmissions';
 import React from 'react';
 import ResendEmailButton from './components/ResendEmailButton';
+import ExportCSVButton from './components/ExportCSVButton';
 import MediaBlock from "./blocks/MediaBlock";
 // @ts-ignore
 export default buildConfig({
@@ -200,7 +202,12 @@ export default buildConfig({
                             },
                         },
                     }
-                ]
+                ],
+                admin: {
+                    components: {
+                        BeforeListTable: [ExportCSVButton]
+                    }
+                }
             }
         }),
         search({
@@ -247,5 +254,6 @@ export default buildConfig({
         }),
     endpoints: [
         resendFormEmailEndpoint,
+        exportFormSubmissionsEndpoint,
     ],
 })
