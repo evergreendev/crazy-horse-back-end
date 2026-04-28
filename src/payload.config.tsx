@@ -82,7 +82,17 @@ export default buildConfig({
                         return feature.key !== 'upload' && feature.key !== 'checkList'
                     }),
                     LinkFeature({
-                        enabledCollections: [...collectionSlugs, "media"]
+                        enabledCollections: [...collectionSlugs, "media"],
+                        fields: ({defaultFields}) => {
+                            return [
+                                ...defaultFields,
+                                {
+                                    name: "autoDownload",
+                                    type: "checkbox",
+                                    defaultValue: false
+                                }
+                            ]
+                        }
                     }),
                     RelationshipFeature({
                         enabledCollections: collectionSlugs
