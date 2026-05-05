@@ -37,6 +37,8 @@ const sendEmail = async (beforeChangeData: any): Promise<any> => {
 
                     const label = formField?.label || field.field
 
+                    if (label === "g-recaptcha-response") return;
+
                     fieldTable += "<div>";
                     fieldTable += `<span style='font-weight: bold'>${label}:</span>`;
                     fieldTable += ` <span>${field.value}</span>`;
