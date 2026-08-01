@@ -71,7 +71,8 @@ export default buildConfig({
         process.env.PAYLOAD_PUBLIC_SERVER_URL
     ],
     rateLimit: {
-        max: 2000,
+        max: 50000,
+        window: 15 * 60 * 1000,
         trustProxy: true
     },
     editor:
