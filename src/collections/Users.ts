@@ -4,6 +4,7 @@ import {isAdminFieldLevel} from "../access/isAdmin";
 export const userRoles = [
     "admin",
     "museum-manager",
+    "university-manager",
     "employment-manager"
 ];
 
