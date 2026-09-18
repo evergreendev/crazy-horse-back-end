@@ -10,7 +10,7 @@ const app = express()
 const auth = {
   auth: {
     api_key: process.env.AWS_SECRET_ACCESS_KEY,
-    domain: 'mail.crazyhorsememorial.org'
+    domain: 'crazyhorsememorial.org'
   }
 }
 
@@ -51,7 +51,7 @@ const start = async () => {
       ? {
         email: {
           fromName: "Crazy Horse Memorial",
-          fromAddress: "noreply@mail.crazyhorsememorial.org",
+          fromAddress: "noreply@crazyhorsememorial.org",
           transport: transporter
         },
       }
