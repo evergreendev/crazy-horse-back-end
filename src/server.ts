@@ -1,33 +1,14 @@
 import express from 'express'
 import payload from 'payload'
 let nodemailer = require("nodemailer");
-let aws = require("@aws-sdk/client-ses");
-let { defaultProvider } = require("@aws-sdk/credential-provider-node");
-import mg from 'nodemailer-mailgun-transport';
 require('dotenv').config()
 const app = express()
 
-const auth = {
-  auth: {
-    api_key: process.env.AWS_SECRET_ACCESS_KEY,
-    domain: 'crazyhorsememorial.org'
-  }
-}
-
-const ses = new aws.SES({
-  apiVersion: "2010-12-01",
-  region: "us-east-2",
-  defaultProvider,
-})
-
-/*// create Nodemailer SES transporter
-let transporter = nodemailer.createTransport(
-    mg(auth)
-);*/
-
+const smtpPort = Number(process.env.EMAIL_PORT) || 587
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
-  port: Number(process.env.EMAIL_PORT)||587,
+  port: smtpPort,
+  secure: smtpPort === 465,
   auth: {
     user: process.env.EMAIL_USERNAME,
     pass: process.env.EMAIL_PASSWORD,
@@ -47,15 +28,11 @@ const start = async () => {
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
     },
-    ...(process.env.AWS_SECRET_ACCESS_KEY
-      ? {
-        email: {
-          fromName: "Crazy Horse Memorial",
-          fromAddress: "noreply@crazyhorsememorial.org",
-          transport: transporter
-        },
-      }
-      : {}),
+    email: {
+      fromName: "Crazy Horse Memorial",
+      fromAddress: "noreply@crazyhorsememorial.org",
+      transport: transporter
+    },
   })
 
   // Add your own express routes here
