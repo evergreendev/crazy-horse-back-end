@@ -39,6 +39,13 @@ export const PressRelease: CollectionConfig = {
     },
     fields: [
         {
+            name: 'mailchimpCampaignId',
+            type: 'text',
+            unique: true,
+            admin: { hidden: true },
+            access: { read: () => false, create: () => false, update: () => false },
+        },
+        {
             name: "pdf",
             type: "upload",
             relationTo: "media",

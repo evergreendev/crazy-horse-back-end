@@ -5,6 +5,8 @@
   "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
+    "mailchimp:import": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.tsx TS_NODE_PROJECT=tsconfig.mailchimp.json ts-node src/mailchimp/cli.ts",
+    "test:mailchimp": "cross-env TS_NODE_PROJECT=tsconfig.mailchimp.json ts-node src/mailchimp/import.test.ts",
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.tsx nodemon",
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.tsx payload build",
     "build:server": "tsc",
@@ -16,6 +18,7 @@
     "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.tsx payload"
   },
   "dependencies": {
+    "htmlparser2": "6.1.0",
     "@aws-sdk/client-ses": "^3.637.0",
     "@payloadcms/bundler-webpack": "^1.0.0",
     "@payloadcms/db-postgres": "^0.8.2",

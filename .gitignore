@@ -4,3 +4,6 @@ dist
 node_modules
 .DS_Store
 .env
+captcha.http
+src/media
+src/user-uploaded-documents
