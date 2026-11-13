@@ -1,13 +1,17 @@
 import { convertContent } from './content'
 
-export const qualifies = (campaign: any, tag: string) =>
-    Array.isArray(campaign.recipients?.segment_opts?.conditions) &&
-    campaign.recipients.segment_opts.conditions.some((c: any) =>
-        c?.field === 'static_segment' && c.op === 'static_is' && String(c.value) === String(tag))
+export const qualifies = (campaign: any, tag?: string, segment?: string) => {
+    const options = campaign.recipients?.segment_opts
+    return Boolean(
+        (segment && options?.saved_segment_id != null && String(options.saved_segment_id) === String(segment)) ||
+        (tag && Array.isArray(options?.conditions) && options.conditions.some((c: any) =>
+            c?.field === 'static_segment' && c.op === 'static_is' && String(c.value) === String(tag)))
+    )
+}
 
-export async function importCampaigns({ api, audience, tag, since, payload, write = false, log = console.log }: any) {
+export async function importCampaigns({ api, audience, tag, segment, since, payload, write = false, log = console.log }: any) {
     if (!since || !Number.isFinite(Date.parse(since))) throw new Error('An explicit ISO import start date is required')
-    if (!tag) {
+    if (!tag && !segment) {
         const result = await api(`/lists/${encodeURIComponent(audience)}/tag-search?name=Press%20Release`)
         tag = result.tags?.find((t: any) => t.name === 'Press Release')?.id
         if (tag === undefined) throw new Error('Exact Press Release tag not found')
@@ -20,9 +24,9 @@ export async function importCampaigns({ api, audience, tag, since, payload, writ
         for (let campaign of page.campaigns) {
             summary.scanned++
             try {
-                if (!Array.isArray(campaign.recipients?.segment_opts?.conditions)) campaign = await api(`/campaigns/${encodeURIComponent(campaign.id)}`)
+                if (!qualifies(campaign, tag, segment) && !Array.isArray(campaign.recipients?.segment_opts?.conditions)) campaign = await api(`/campaigns/${encodeURIComponent(campaign.id)}`)
                 if (campaign.status !== 'sent' || campaign.recipients?.list_id !== audience) { summary.skipped++; continue }
-                if (!Array.isArray(campaign.recipients?.segment_opts?.conditions)) {
+                if (!qualifies(campaign, tag, segment) && !Array.isArray(campaign.recipients?.segment_opts?.conditions)) {
                     const recipients = campaign.recipients
                     summary.skipped++
                     if (recipients.segment_opts == null && !recipients.segment_text) {
@@ -36,7 +40,7 @@ export async function importCampaigns({ api, audience, tag, since, payload, writ
                     }
                     continue
                 }
-                if (!qualifies(campaign, tag)) { summary.skipped++; continue }
+                if (!qualifies(campaign, tag, segment)) { summary.skipped++; continue }
                 summary.qualified++
                 log(`Qualifies: ${campaign.id} ${campaign.settings?.subject_line || ''}`)
                 if (!write) continue

@@ -1,8 +1,23 @@
 import { strict as assert } from 'assert'
 import { importCampaigns, qualifies } from './import'
 import { convertContent } from './content'
+import { listSegments } from './segments'
 
 async function test() {
+    const segmentPaths: string[] = []
+    assert.deepEqual(await listSegments(async path => {
+        segmentPaths.push(path)
+        return { segments: path.endsWith('offset=0') ? [{ id: 42, name: 'Press Release', member_count: 10 }] : [{ id: 43, name: 'News' }], total_items: 2 }
+    }, 'audience/id'), [{ id: 42, name: 'Press Release' }, { id: 43, name: 'News' }])
+    assert.deepEqual(segmentPaths, ['/lists/audience%2Fid/segments?count=100&offset=0', '/lists/audience%2Fid/segments?count=100&offset=1'])
+    const tagPaths: string[] = []
+    assert.deepEqual(await listSegments(async path => {
+        tagPaths.push(path)
+        return { segments: [{ id: tagPaths.length, name: `Tag ${tagPaths.length}` }], total_items: 2 }
+    }, 'audience/id', 'static'), [{ id: 1, name: 'Tag 1' }, { id: 2, name: 'Tag 2' }])
+    assert.deepEqual(tagPaths, ['/lists/audience%2Fid/segments?count=100&offset=0&type=static', '/lists/audience%2Fid/segments?count=100&offset=1&type=static'])
+    assert.deepEqual(await listSegments(async () => ({ segments: [], total_items: 0 }), 'audience'), [])
+    await assert.rejects(() => listSegments(async () => ({}), 'audience'), /Invalid Mailchimp segments response/)
     const campaign = { id: 'campaign', status: 'sent', send_time: '2026-01-02T12:00:00Z', settings: { subject_line: 'Release title' }, recipients: { list_id: 'audience', segment_opts: { match: 'all', conditions: [
         { field: 'static_segment', op: 'static_is', value: 17 },
         { field: 'static_segment', op: 'static_is', value: '99' },
@@ -64,6 +79,26 @@ async function test() {
     assert(logs.some(line => line.includes('Skipped unresolved: advanced')))
     assert(logs.some(line => line.includes('whole-audience (no recipient segment conditions)')))
     assert.equal(contentFetches, 0)
+    const segmentCampaign = { ...campaign, id: 'saved-segment', recipients: { list_id: 'audience', segment_opts: { saved_segment_id: 42 } } }
+    assert(qualifies(segmentCampaign, undefined, '42'))
+    assert(!qualifies(segmentCampaign, '42'))
+    assert(!qualifies(segmentCampaign, undefined, '17'))
+    assert(!qualifies(campaign, undefined, '17'))
+    assert(qualifies(campaign, '17', '42'))
+    assert(qualifies(segmentCampaign, '17', '42'))
+    for (const detailOnly of [false, true]) {
+        let segmentDetails = 0
+        const segmentSummary = await importCampaigns({ ...options, segment: '42', api: async (path: string) => {
+            if (path.startsWith('/campaigns?')) return { campaigns: [detailOnly ? { ...segmentCampaign, recipients: { list_id: 'audience' } } : segmentCampaign], total_items: 1 }
+            assert.equal(path, '/campaigns/saved-segment') // No default tag lookup or content fetch.
+            segmentDetails++
+            return segmentCampaign
+        } })
+        assert.equal(segmentSummary.qualified, 1)
+        assert.equal(segmentSummary.unresolved, 0)
+        assert.equal(segmentSummary.failures, 0)
+        assert.equal(segmentDetails, detailOnly ? 1 : 0)
+    }
     const failedSummary = await importCampaigns({ ...options, tag: '17', api: async (path: string) => {
         if (path.startsWith('/campaigns?')) return { campaigns: [fixtures[0]], total_items: 1 }
         throw new Error('Mailchimp request failed (429)')
