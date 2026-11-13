@@ -7,6 +7,7 @@
   "scripts": {
     "mailchimp:segments": "cross-env TS_NODE_PROJECT=tsconfig.mailchimp.json ts-node src/mailchimp/cli.ts --list-segments",
     "mailchimp:tags": "cross-env TS_NODE_PROJECT=tsconfig.mailchimp.json ts-node src/mailchimp/cli.ts --list-tags",
+    "mailchimp:inspect": "cross-env TS_NODE_PROJECT=tsconfig.mailchimp.json ts-node src/mailchimp/cli.ts --inspect-campaign",
     "mailchimp:import": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.tsx TS_NODE_PROJECT=tsconfig.mailchimp.json ts-node src/mailchimp/cli.ts",
     "test:mailchimp": "cross-env TS_NODE_PROJECT=tsconfig.mailchimp.json ts-node src/mailchimp/import.test.ts",
     "dev": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.tsx nodemon",

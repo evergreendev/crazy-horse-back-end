@@ -23,6 +23,10 @@ async function test() {
         { field: 'static_segment', op: 'static_is', value: '99' },
     ] } } }
     assert(qualifies(campaign, '17'))
+    assert(qualifies({ settings: { title: '2026 PRESS RELEASE - Announcement' } }))
+    assert(!qualifies({ settings: { subject_line: 'Press Release' } }))
+    assert(!qualifies({ ...campaign, settings: { title: 'Press Release RESEND' } }, '17'))
+    assert(!qualifies({ recipients: { segment_opts: { saved_segment_id: 42 } }, settings: { title: 'Resend' } }, undefined, '42'))
     assert(!qualifies({ recipients: { segment_opts: { conditions: [{ field: 'static_segment', op: 'static_not', value: '17' }] } } }, '17'))
     const html = '<div class="preheader">Preview</div><h2>Announcement</h2><p>CRAZY HORSE, S.D. — An important announcement from the Memorial today.</p><ul><li>First item</li></ul><p><a href="https://example.com/story?utm_source=email">Read more</a></p><footer>Unsubscribe</footer><img src="pixel.gif">'
     const lexical = convertContent(html)
@@ -54,6 +58,23 @@ async function test() {
     assert.equal(records[0].title, 'Editorial change')
     assert.equal(records[0].publishedAt, campaign.send_time)
     assert.equal(details, 3)
+    const titleRecords: any[] = []
+    const titleSummary = await importCampaigns({ ...options, write: true, api: async (path: string) => {
+        if (path.includes('tag-search')) return { tags: [] }
+        if (path.startsWith('/campaigns?')) return { campaigns: [
+            { ...campaign, id: 'title-match', settings: { ...campaign.settings, title: 'PRESS RELEASE - Announcement' }, recipients: { list_id: 'audience', segment_opts: { match: 'all' } } },
+            { ...campaign, id: 'resend', settings: { ...campaign.settings, title: 'Press Release - Resend' } },
+        ], total_items: 2 }
+        assert.equal(path, '/campaigns/title-match/content')
+        return { html }
+    }, payload: {
+        find: async () => ({ docs: titleRecords }),
+        create: async ({ data }: any) => { const record = { ...data, id: 2 }; titleRecords.push(record); return record },
+    } })
+    assert.deepEqual(titleSummary, { scanned: 2, qualified: 1, skipped: 1, unresolved: 0, failures: 0 })
+    assert.equal(titleRecords.length, 1)
+    assert.equal(titleRecords[0].title, 'Release title')
+    assert.equal(titleRecords[0]._status, 'published')
     // Production response shapes: opaque advanced segments and an unsegmented send.
     // A misleading display label must never substitute for a positive tag condition.
     const fixtures = [

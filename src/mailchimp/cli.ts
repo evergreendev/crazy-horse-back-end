@@ -5,13 +5,15 @@ import { listSegments } from './segments'
 async function main() {
     const args = process.argv.slice(2)
     const listing = args.length === 1 && ['--list-segments', '--list-tags'].includes(args[0])
-    if (!listing && (args.some(a => !['--write', '--dry-run'].includes(a)) || (args.includes('--write') && args.includes('--dry-run')))) throw new Error('Use --dry-run (default), --write, --list-segments, or --list-tags alone')
+    const inspecting = args.length === 2 && args[0] === '--inspect-campaign' && Boolean(args[1].trim()) && !args[1].startsWith('--')
+    if (!listing && !inspecting && (args.some(a => !['--write', '--dry-run'].includes(a)) || (args.includes('--write') && args.includes('--dry-run')))) throw new Error('Use --dry-run (default), --write, --list-segments, --list-tags, or --inspect-campaign CAMPAIGN_ID')
     const token = process.env.MAILCHIMP_API_KEY
     const audience = process.env.MAILCHIMP_AUDIENCE_ID
     const since = process.env.MAILCHIMP_IMPORT_START_DATE
     const dc = token?.split('-').pop()
-    if (!token || !audience || !/^us\d+$/.test(dc)) throw new Error('Set MAILCHIMP_API_KEY (including its -usNN suffix) and MAILCHIMP_AUDIENCE_ID')
-    if (!listing && !since) throw new Error('Set MAILCHIMP_IMPORT_START_DATE')
+    if (!token || !/^us\d+$/.test(dc)) throw new Error('Set MAILCHIMP_API_KEY (including its -usNN suffix)')
+    if (!inspecting && !audience) throw new Error('Set MAILCHIMP_AUDIENCE_ID')
+    if (!listing && !inspecting && !since) throw new Error('Set MAILCHIMP_IMPORT_START_DATE')
     const api = async (path: string) => {
         const controller = new AbortController()
         const timer = setTimeout(() => controller.abort(), 30000)
@@ -20,6 +22,10 @@ async function main() {
             if (!response.ok) throw new Error(`Mailchimp request failed (${response.status})`)
             return response.json()
         } finally { clearTimeout(timer) }
+    }
+    if (inspecting) {
+        console.log(JSON.stringify(await api(`/campaigns/${encodeURIComponent(args[1].trim())}`), null, 2))
+        return
     }
     if (listing) {
         const tags = args[0] === '--list-tags'

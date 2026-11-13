@@ -1,8 +1,12 @@
 import { convertContent } from './content'
 
+const isResend = (campaign: any) => /resend/i.test(campaign.settings?.title || '')
+
 export const qualifies = (campaign: any, tag?: string, segment?: string) => {
+    if (isResend(campaign)) return false
     const options = campaign.recipients?.segment_opts
     return Boolean(
+        /press release/i.test(campaign.settings?.title || '') ||
         (segment && options?.saved_segment_id != null && String(options.saved_segment_id) === String(segment)) ||
         (tag && Array.isArray(options?.conditions) && options.conditions.some((c: any) =>
             c?.field === 'static_segment' && c.op === 'static_is' && String(c.value) === String(tag)))
@@ -14,7 +18,7 @@ export async function importCampaigns({ api, audience, tag, segment, since, payl
     if (!tag && !segment) {
         const result = await api(`/lists/${encodeURIComponent(audience)}/tag-search?name=Press%20Release`)
         tag = result.tags?.find((t: any) => t.name === 'Press Release')?.id
-        if (tag === undefined) throw new Error('Exact Press Release tag not found')
+        if (tag === undefined) log('Exact Press Release tag not found; checking campaign titles only')
     }
     let offset = 0
     const summary = { scanned: 0, qualified: 0, skipped: 0, unresolved: 0, failures: 0 }
@@ -24,8 +28,10 @@ export async function importCampaigns({ api, audience, tag, segment, since, payl
         for (let campaign of page.campaigns) {
             summary.scanned++
             try {
+                if (isResend(campaign)) { summary.skipped++; log(`Skipped: ${campaign.id} (resend in campaign title)`); continue }
                 if (!qualifies(campaign, tag, segment) && !Array.isArray(campaign.recipients?.segment_opts?.conditions)) campaign = await api(`/campaigns/${encodeURIComponent(campaign.id)}`)
                 if (campaign.status !== 'sent' || campaign.recipients?.list_id !== audience) { summary.skipped++; continue }
+                if (isResend(campaign)) { summary.skipped++; log(`Skipped: ${campaign.id} (resend in campaign title)`); continue }
                 if (!qualifies(campaign, tag, segment) && !Array.isArray(campaign.recipients?.segment_opts?.conditions)) {
                     const recipients = campaign.recipients
                     summary.skipped++
